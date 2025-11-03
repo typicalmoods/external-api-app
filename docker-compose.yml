@@ -1,0 +1,22 @@
+services:
+  app:
+    build: .
+    ports:
+      - "5050:5000"
+    depends_on:
+      - db
+
+  db:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGODB_DATABASE: api_data_db
+      MONGODB_USER: root
+      MONGODB_PASSWORD: root
+
+volumes:
+  mongo_data:
